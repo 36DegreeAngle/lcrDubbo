@@ -1,0 +1,4 @@
+com\ssm\controller\LoginAction.class
+com\ssm\dao\UserMapper.class
+com\ssm\service\impl\LoginServiceImpl.class
+com\ssm\entity\User.class

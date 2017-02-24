@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.entity.User" >
+    <id column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_AGE" property="userAge" jdbcType="INTEGER" />
+    <result column="USER_SEX" property="userSex" jdbcType="VARCHAR" />
+    <result column="USER_PHONE" property="userPhone" jdbcType="VARCHAR" />
+    <result column="USER_ADDRESS" property="userAddress" jdbcType="VARCHAR" />
+    <result column="USER_RANK" property="userRank" jdbcType="VARCHAR" />
+    <result column="USER_BIRTHDAY" property="userBirthday" jdbcType="DATE" />
+    <result column="USER_LOGIN_SITE" property="userLoginSite" jdbcType="VARCHAR" />
+    <result column="USER_LOGIN_IP" property="userLoginIp" jdbcType="VARCHAR" />
+    <result column="USER_LOGIN_CLIENT" property="userLoginClient" jdbcType="VARCHAR" />
+    <result column="USER_REGISTER_DATE" property="userRegisterDate" jdbcType="DATE" />
+    <result column="USER_LATELY_LOGIN_TIME" property="userLatelyLoginTime" jdbcType="TIMESTAMP" />
+    <result column="USER_RETAIN" property="userRetain" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, USER_NAME, USER_AGE, USER_SEX, USER_PHONE, USER_ADDRESS, USER_RANK, USER_BIRTHDAY, 
+    USER_LOGIN_SITE, USER_LOGIN_IP, USER_LOGIN_CLIENT, USER_REGISTER_DATE, USER_LATELY_LOGIN_TIME, 
+    USER_RETAIN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.entity.User" >
+    insert into user (USER_ID, USER_NAME, USER_AGE, 
+      USER_SEX, USER_PHONE, USER_ADDRESS, 
+      USER_RANK, USER_BIRTHDAY, USER_LOGIN_SITE, 
+      USER_LOGIN_IP, USER_LOGIN_CLIENT, USER_REGISTER_DATE, 
+      USER_LATELY_LOGIN_TIME, USER_RETAIN)
+    values (#{userId,jdbcType=DECIMAL}, #{userName,jdbcType=VARCHAR}, #{userAge,jdbcType=INTEGER}, 
+      #{userSex,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, 
+      #{userRank,jdbcType=VARCHAR}, #{userBirthday,jdbcType=DATE}, #{userLoginSite,jdbcType=VARCHAR}, 
+      #{userLoginIp,jdbcType=VARCHAR}, #{userLoginClient,jdbcType=VARCHAR}, #{userRegisterDate,jdbcType=DATE}, 
+      #{userLatelyLoginTime,jdbcType=TIMESTAMP}, #{userRetain,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="userAge != null" >
+        USER_AGE,
+      </if>
+      <if test="userSex != null" >
+        USER_SEX,
+      </if>
+      <if test="userPhone != null" >
+        USER_PHONE,
+      </if>
+      <if test="userAddress != null" >
+        USER_ADDRESS,
+      </if>
+      <if test="userRank != null" >
+        USER_RANK,
+      </if>
+      <if test="userBirthday != null" >
+        USER_BIRTHDAY,
+      </if>
+      <if test="userLoginSite != null" >
+        USER_LOGIN_SITE,
+      </if>
+      <if test="userLoginIp != null" >
+        USER_LOGIN_IP,
+      </if>
+      <if test="userLoginClient != null" >
+        USER_LOGIN_CLIENT,
+      </if>
+      <if test="userRegisterDate != null" >
+        USER_REGISTER_DATE,
+      </if>
+      <if test="userLatelyLoginTime != null" >
+        USER_LATELY_LOGIN_TIME,
+      </if>
+      <if test="userRetain != null" >
+        USER_RETAIN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userRank != null" >
+        #{userRank,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null" >
+        #{userBirthday,jdbcType=DATE},
+      </if>
+      <if test="userLoginSite != null" >
+        #{userLoginSite,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginIp != null" >
+        #{userLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginClient != null" >
+        #{userLoginClient,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegisterDate != null" >
+        #{userRegisterDate,jdbcType=DATE},
+      </if>
+      <if test="userLatelyLoginTime != null" >
+        #{userLatelyLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userRetain != null" >
+        #{userRetain,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.entity.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        USER_AGE = #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userSex != null" >
+        USER_SEX = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        USER_ADDRESS = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userRank != null" >
+        USER_RANK = #{userRank,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null" >
+        USER_BIRTHDAY = #{userBirthday,jdbcType=DATE},
+      </if>
+      <if test="userLoginSite != null" >
+        USER_LOGIN_SITE = #{userLoginSite,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginIp != null" >
+        USER_LOGIN_IP = #{userLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginClient != null" >
+        USER_LOGIN_CLIENT = #{userLoginClient,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegisterDate != null" >
+        USER_REGISTER_DATE = #{userRegisterDate,jdbcType=DATE},
+      </if>
+      <if test="userLatelyLoginTime != null" >
+        USER_LATELY_LOGIN_TIME = #{userLatelyLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userRetain != null" >
+        USER_RETAIN = #{userRetain,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.entity.User" >
+    update user
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_AGE = #{userAge,jdbcType=INTEGER},
+      USER_SEX = #{userSex,jdbcType=VARCHAR},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      USER_ADDRESS = #{userAddress,jdbcType=VARCHAR},
+      USER_RANK = #{userRank,jdbcType=VARCHAR},
+      USER_BIRTHDAY = #{userBirthday,jdbcType=DATE},
+      USER_LOGIN_SITE = #{userLoginSite,jdbcType=VARCHAR},
+      USER_LOGIN_IP = #{userLoginIp,jdbcType=VARCHAR},
+      USER_LOGIN_CLIENT = #{userLoginClient,jdbcType=VARCHAR},
+      USER_REGISTER_DATE = #{userRegisterDate,jdbcType=DATE},
+      USER_LATELY_LOGIN_TIME = #{userLatelyLoginTime,jdbcType=TIMESTAMP},
+      USER_RETAIN = #{userRetain,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where USER_NAME = #{userName,jdbcType=VARCHAR}
+  </select>
+</mapper>
